@@ -15,17 +15,17 @@
                 <img src="../../public/sushi-item.jpg" alt="">
             </div>
             <div class="categories-item">
-                <span>Бургеры</span>
+                <span>Бургер</span>
                 <div class="item-gradient"></div>
                 <img src="../../public/burger-item.jpg" alt="">
             </div>
             <div class="categories-item">
-                <span>Донеры</span>
+                <span>Донер</span>
                 <div class="item-gradient"></div>
                 <img src="../../public/doner-item.jpg" alt="">
             </div>
             <div class="categories-item">
-                <span>Шашлыки</span>
+                <span>Шашлык</span>
                 <div class="item-gradient"></div>
                 <img src="../../public/shashlyk-item.jpg" alt="">
             </div>
@@ -33,6 +33,36 @@
                 <span>Вок</span>
                 <div class="item-gradient"></div>
                 <img src="../../public/wok-item.jpg" alt="">
+            </div>
+            <div class="categories-item">
+                <span>Лагман</span>
+                <div class="item-gradient"></div>
+                <img src="../../public/lagman-item.jpeg" alt="">
+            </div>
+            <div class="categories-item">
+                <span>Паста</span>
+                <div class="item-gradient"></div>
+                <img src="../../public/pasta-item.jpg" alt="">
+            </div>
+            <div class="categories-item">
+                <span>Плов</span>
+                <div class="item-gradient"></div>
+                <img src="../../public/plov-item.jpg" alt="">
+            </div>
+            <div class="categories-item">
+                <span>Рамен</span>
+                <div class="item-gradient"></div>
+                <img src="../../public/ramen-item.png" alt="">
+            </div>
+            <div class="categories-item">
+                <span>Салаты</span>
+                <div class="item-gradient"></div>
+                <img src="../../public/salad-item.jpg" alt="">
+            </div>
+            <div class="categories-item">
+                <span>Десерты</span>
+                <div class="item-gradient"></div>
+                <img src="../../public/desert-item.jpg" alt="">
             </div>
         </div>
     </div>
@@ -71,12 +101,13 @@
     height: 150px;
     border-radius: 10px;
     overflow: hidden;
+    display: flex;
 }
 
 .item-gradient {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top right, #ffeeaa, transparent);
+    background: linear-gradient(to top right, #ffeeaaeb, transparent);
     position: absolute;
 }
 
@@ -97,6 +128,7 @@
 .categories-item>img {
     width: 300px;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 </style>
