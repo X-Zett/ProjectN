@@ -4,66 +4,91 @@
             <span>Категории</span>
         </div>
         <div class="categories-list">
-            <div class="categories-item">
-                <span>Пицца</span>
-                <div class="item-gradient"></div>
+            <a href="">
+                <div class="categories-item">
                 <img src="../../public/pizza-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Суши и роллы</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/sushi-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Бургер</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/burger-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Донер</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/doner-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Шашлык</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/shashlyk-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Вок</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/wok-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Лагман</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/lagman-item.jpeg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Паста</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/pasta-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Плов</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/plov-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Рамен</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/ramen-item.png" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Салаты</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/salad-item.jpg" alt="">
-            </div>
-            <div class="categories-item">
-                <span>Десерты</span>
-                <div class="item-gradient"></div>
-                <img src="../../public/desert-item.jpg" alt="">
-            </div>
+                <span>Пицца</span>
+                <p>Сырная основа, томатный соус и разнообразные начинки на любой вкус</p>
+                <span class="">от 1900 тг.</span>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/sushi-item.jpg" alt="">
+                    <span>Суши и роллы</span>
+                    <p>Свежие морепродукты и овощи, завернутые в рис и нори</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/burger-item.jpg" alt="">
+                    <span>Бургер</span>
+                    <p>Сочная котлета, свежие овощи и ароматные соусы в мягкой булочке</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/doner-item.jpg" alt="">
+                    <span>Донер</span>
+                    <p>Мясо, приготовленное на вертеле, с овощами и соусами в лаваше</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/shashlyk-item.jpg" alt="">
+                    <span>Шашлык</span>
+                    <p>Маринованное мясо, приготовленное на углях, с овощами и специями</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/wok-item.jpg" alt="">
+                    <span>Вок</span>
+                    <p>Обжаренные овощи и мясо с лапшой в восточном стиле</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/lagman-item.jpeg" alt="">
+                    <span>Лагман</span>
+                    <p>Традиционное узбекское блюдо с лапшой, мясом и овощами</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/pasta-item.jpg" alt="">
+                    <span>Паста</span>
+                    <p>Итальянские макароны с различными соусами и начинками</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/plov-item.jpg" alt="">
+                    <span>Плов</span>
+                    <p>Ароматный рис с мясом, морковью и специями</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/ramen-item.png" alt="">
+                    <span>Рамен</span>
+                    <p>Японский суп с лапшой, мясом и овощами</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/salad-item.jpg" alt="">
+                    <span>Салаты</span>
+                    <p>Свежие овощи и зелень с разнообразными заправками</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="categories-item">
+                    <img src="../../public/desert-item.jpg" alt="">
+                    <span>Десерты</span>
+                    <p>Сладкие угощения для завершения трапезы</p>
+                </div>
+            </a>
         </div>
     </div>
 </template>
@@ -96,37 +121,48 @@
 }
 
 .categories-item {
-    position: relative;
     width: 300px;
-    height: 150px;
-    border-radius: 10px;
-    overflow: hidden;
+    height: 280px;
     display: flex;
+    flex-direction: column;
+    border-radius: 10px;
 }
 
-.item-gradient {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top right, #ffeeaaeb, transparent);
-    position: absolute;
-}
-
-.categories-item>span {
-    position: absolute;
+.categories-item>span:first-of-type {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 42px;
-    border-radius: 5px;
-    bottom: 5px;
-    left: 10px;
-    color: #ffffffd8;
-    z-index: 1;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 24px;
+    color: #000000;
+    margin: 5px 0 5px 5px;
+    line-height: normal;
+}
+
+.categories-item>span:nth-of-type(2) {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    color: #000000;
+    line-height: normal;
+    text-align: end;
+    margin: 0 5px 0 0;
+}
+
+.categories-item>p {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    line-height: normal;
+    margin: 0 0 0 5px;
+    font-weight: 300;
+
 }
 
 .categories-item>img {
     width: 300px;
+    height: 150px;
     border-radius: 10px;
     object-fit: cover;
 }

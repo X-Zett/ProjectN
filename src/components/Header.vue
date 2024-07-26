@@ -1,6 +1,6 @@
 <template>
-    <div class="header">
-        <span class="lemon-logo">Lemon</span>
+    <div class="py-[20px] px-[70px] flex justify-between items-center shadow-md sticky top-0 bg-white">
+        <span class="lemon-logo ">Lemon</span>
         <form action="#" method="get">
             <input type="text" class="input-search" placeholder="Введите название">
             <button type="submit" class="input-button">Поиск</button>
@@ -17,13 +17,6 @@
 </script>
 
 <style scoped>
-.header {
-    padding: 20px 70px 20px 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .lemon-logo {
     font-family: "Pangolin", cursive;
     font-weight: 400;
