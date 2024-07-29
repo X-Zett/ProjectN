@@ -1,6 +1,6 @@
 <template>
-    <div>
-        HAHA
+    <div class="w-[240px]">
+        Filter
     </div>
 </template>
 

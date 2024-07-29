@@ -1,8 +1,7 @@
 <template>
   <div>
       <Header></Header>
-      <Filters></Filters>
-      <Categories></Categories>
+      <Main></Main>
       <Establishments></Establishments>
 
   </div>
@@ -10,9 +9,8 @@
 
 <script setup>
   import Header from "./components/Header.vue"
-  import Categories from "./components/Categories.vue"
   import Establishments from "./components/Establishments.vue"
-  import Filters from "@/components/Filters.vue";
+  import Main from "@/components/Main.vue";
   // export default {
   //   name: "App",
   //   components: {HeaderComp}

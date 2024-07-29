@@ -1,5 +1,5 @@
 <template>
-    <div class="categories-main">
+    <div class="w-[1080px]">
         <div class="categories-title">
             <span>Категории</span>
         </div>
@@ -100,11 +100,6 @@
 </script>
 
 <style scoped>
-.categories-main {
-    margin: 40px 0 0 0;
-    padding: 0 70px 0 70px;
-}
-
 .categories-title {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -117,12 +112,13 @@
 .categories-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 44px;
+    justify-content: space-between;
+    gap: 40px;
 }
 
 .categories-item {
-    width: 300px;
-    height: 280px;
+    width: 220px;
+    height: 270px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -133,9 +129,9 @@
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    font-size: 24px;
+    font-size: 22px;
     color: #000000;
-    margin: 5px 0 5px 5px;
+    margin: 5px 0 5px 0;
     line-height: normal;
 }
 
@@ -148,20 +144,19 @@
     color: #000000;
     line-height: normal;
     text-align: end;
-    margin: 0 5px 0 0;
+    margin: 5px 0 0 0;
 }
 
 .categories-item>p {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     line-height: normal;
-    margin: 0 0 0 5px;
     font-weight: 300;
-
+    font-size: 14px;
 }
 
 .categories-item>img {
-    width: 300px;
+    width: 220px;
     height: 150px;
     border-radius: 10px;
     object-fit: cover;
