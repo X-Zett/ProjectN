@@ -1,5 +1,5 @@
 <template>
-    <div class="py-[20px] px-[70px] flex justify-between items-center shadow-md sticky top-0 bg-white">
+    <div class="py-[20px] px-[70px] flex justify-between items-center shadow-md sticky top-0 bg-white z-10">
         <span class="font-pangolin font-normal not-italic text-[40px]">Lemon</span>
         <form action="#" method="get" class="">
             <el-input class="w-[250px] h-[40px] box-border font-monserrat font-medium" placeholder="Введите название">
@@ -8,14 +8,14 @@
                 </template>
             </el-input>
         </form>
-        <a href=""><img src="../../public/2003191_citrus_food_lemon_nutrition_icon.png" alt=""></a>
+        <a href=""><img class="w-[60px] h-[60px]" src="../../public/2003191_citrus_food_lemon_nutrition_icon.png" alt=""></a>
 
     </div>
 </template>
 
 <script setup>
 import { Search } from '@element-plus/icons-vue'
-    // export default {
+// export default {
     //     name: "HeaderComp"
     // }
 </script>
@@ -29,10 +29,5 @@ import { Search } from '@element-plus/icons-vue'
     font-style: normal;
     font-size: 16px;
     color: #1a1a1a;
-}
-
-img {
-    width: 60px;
-    height: 60px;
 }
 </style>
