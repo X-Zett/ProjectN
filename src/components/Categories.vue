@@ -4,88 +4,11 @@
             <span>Пиццы</span>
         </div>
         <div class="flex flex-wrap justify-between gap-[40px]">
-            <a class="hover:text-[#ffdd55] transition" href="">
+            <a v-for="item in data" class="hover:text-[#ffdd55] transition" href="">
                 <div class="categories-item">
-                    <img src="../../public/pizza-item.jpg" alt="">
-                    <span class="">Пицца</span>
-                    <p class="">Сырная основа, томатный соус и разнообразные начинки на любой вкус</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/sushi-item.jpg" alt="">
-                    <span>Суши и роллы</span>
-                    <p>Свежие морепродукты и овощи, завернутые в рис и нори</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/burger-item.jpg" alt="">
-                    <span>Бургер</span>
-                    <p>Сочная котлета, свежие овощи и ароматные соусы в мягкой булочке</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/doner-item.jpg" alt="">
-                    <span>Донер</span>
-                    <p>Мясо, приготовленное на вертеле, с овощами и соусами в лаваше</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/shashlyk-item.jpg" alt="">
-                    <span>Шашлык</span>
-                    <p>Маринованное мясо, приготовленное на углях, с овощами и специями</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/wok-item.jpg" alt="">
-                    <span>Вок</span>
-                    <p>Обжаренные овощи и мясо с лапшой в восточном стиле</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/lagman-item.jpeg" alt="">
-                    <span>Лагман</span>
-                    <p>Традиционное узбекское блюдо с лапшой, мясом и овощами</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/pasta-item.jpg" alt="">
-                    <span>Паста</span>
-                    <p>Итальянские макароны с различными соусами и начинками</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/plov-item.jpg" alt="">
-                    <span>Плов</span>
-                    <p>Ароматный рис с мясом, морковью и специями</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/ramen-item.png" alt="">
-                    <span>Рамен</span>
-                    <p>Японский суп с лапшой, мясом и овощами</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/salad-item.jpg" alt="">
-                    <span>Салаты</span>
-                    <p>Свежие овощи и зелень с разнообразными заправками</p>
-                </div>
-            </a>
-            <a class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img src="../../public/desert-item.jpg" alt="">
-                    <span>Десерты</span>
-                    <p>Сладкие угощения для завершения трапезы</p>
+                    <img :src="item.image" alt="">
+                    <span class="">{{item.name}}</span>
+                    <p class="">{{item.desc}}</p>
                 </div>
             </a>
         </div>
@@ -93,15 +16,32 @@
 </template>
 
 <script setup>
-    // export default {
-        
-    // }
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const data = ref([]);
+const loading = ref(true);
+const error = ref(null);
+
+async function fetchData() {
+    try {
+        loading.value = true;
+        const response = await axios.get('https://6c2cf1ca9269fb85.mokky.dev/items');
+        data.value = response.data;
+    } catch (err) {
+        error.value = err.message;
+    } finally {
+        loading.value = false;
+    }
+}
+
+onMounted(fetchData);
 </script>
 
 <style scoped>
 .categories-item {
     width: 220px;
-    height: 270px;
+    height: 290px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -127,10 +67,11 @@
 }
 
 .categories-item>img {
-    width: 220px;
-    height: 150px;
+    width: 210px;
+    height: 220px;
     border-radius: 10px;
     object-fit: cover;
+    margin-left: 10px;
 }
 
 </style>
