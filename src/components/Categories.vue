@@ -1,7 +1,7 @@
 <template>
     <div class="w-[1080px]">
         <div class="font-monserrat font-semibold not-italic text-[24px] mb-[20px]">
-            <span>Категории</span>
+            <span>Пиццы</span>
         </div>
         <div class="flex flex-wrap justify-between gap-[40px]">
             <a class="hover:text-[#ffdd55] transition" href="">

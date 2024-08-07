@@ -11,10 +11,11 @@
             </el-form-item>
             <el-form-item>
                 <span class="w-full text-[16px] mb-[10px]">Цена:</span>
-                <span class="w-[190px] flex justify-between">
-                    <el-input v-model="input" placeholder="От" style="width: 90px" :suffix-icon="Money"></el-input>
-                    <el-input v-model="input" placeholder="До" style="width: 90px" :suffix-icon="Money"></el-input>
+                <span class="w-[165px] flex justify-between">
+                    <el-input type="number" v-model="pizza.priceMin" placeholder="От" style="width: 80px"></el-input>
+                    <el-input v-model="pizza.priceMax" placeholder="До" style="width: 80px"></el-input>
                 </span>
+                <img class="w-4 h-4 ml-2 opacity-30" src="/public/tenge.png">
             </el-form-item>
             <el-form-item>
                 <span class="w-full text-[16px] mb-0">Ингредиенты:</span>
@@ -35,11 +36,14 @@
             </el-form-item>
             <el-form-item>
                 <span>Тип теста:</span>
-                <el-checkbox-group v-model="pizza.type">
-                    <el-checkbox style="width: 100%" value="Традиционное">
+                <el-radio-group v-model="pizza.type">
+                    <el-radio style="width: 100%" value="Традиционное">
                         <span>Традиционное</span>
-                    </el-checkbox>
-                </el-checkbox-group>
+                    </el-radio>
+                    <el-radio style="width: 100%" value="Тонкое">
+                        <span>Тонкое</span>
+                    </el-radio>
+                </el-radio-group>
             </el-form-item>
         </el-form>
     </div>
@@ -47,13 +51,26 @@
 
 <script setup>
 import {Money} from "@element-plus/icons-vue"
-import {reactive} from "vue"
-const pizza = reactive({
+import {ref} from "vue"
+const pizza = ref({
+    priceMin: null,
+    priceMax: null,
     ingredients: [],
     type: []
 })
 
 </script>
 
-<style scoped>
+<style>
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
 </style>
