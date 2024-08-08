@@ -5,10 +5,10 @@
         </div>
         <div class="flex flex-wrap justify-between gap-[40px]">
             <a v-for="item in data" class="hover:text-[#ffdd55] transition" href="">
-                <div class="categories-item">
-                    <img :src="item.image" alt="">
-                    <span class="">{{item.name}}</span>
-                    <p class="">{{item.desc}}</p>
+                <div class="w-[240px] h-[350px] flex flex-col rounded-[10px]">
+                    <img class="w-[210px] h-[220px] object-cover ml-[20px] mr-[10px]" :src="item.image" alt="">
+                    <span class="font-monserrat font-medium text-[22px] my-[5px] leading-normal">{{item.name}}</span>
+                    <p class="font-monserrat font-light text-[14px] leading-normal">{{item.desc}}</p>
                 </div>
             </a>
         </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import {ref, onMounted, provide} from 'vue';
 import axios from 'axios';
 
 const data = ref([]);
@@ -35,43 +35,12 @@ async function fetchData() {
     }
 }
 
+provide('pizza', {
+    data
+})
+
 onMounted(fetchData);
 </script>
 
 <style scoped>
-.categories-item {
-    width: 220px;
-    height: 290px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-}
-
-.categories-item>span:first-of-type {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 22px;
-    margin: 5px 0 5px 0;
-    line-height: normal;
-
-}
-
-.categories-item>p {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    line-height: normal;
-    font-weight: 300;
-    font-size: 14px;
-}
-
-.categories-item>img {
-    width: 210px;
-    height: 220px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-left: 10px;
-}
-
 </style>
