@@ -4,13 +4,16 @@
             <span>Пиццы</span>
         </div>
         <div class="flex flex-wrap justify-between gap-[40px]">
-            <a v-for="item in data" class="hover:text-[#ffdd55] transition" href="">
-                <div class="w-[240px] h-[350px] flex flex-col rounded-[10px]">
-                    <img class="w-[210px] h-[220px] object-cover ml-[20px] mr-[10px]" :src="item.image" alt="">
-                    <span class="font-monserrat font-medium text-[22px] my-[5px] leading-normal">{{item.name}}</span>
-                    <p class="font-monserrat font-light text-[14px] leading-normal">{{item.desc}}</p>
+            <div v-for="item in data" @click="showPopup" class="relative w-[230px] h-[375px] flex flex-col rounded-[10px] hover:text-[#ffdd55] transition cursor-pointer">
+                <img class="w-[210px] h-[220px] object-contain ml-[15px] mr-[5px]" :src="item.image" alt="">
+                <span class="font-monserrat font-medium text-[22px] my-[5px] leading-normal">{{item.name}}</span>
+                <p class="font-monserrat font-light text-[14px] leading-normal">{{item.desc}}</p>
+                <div class="absolute bottom-0 font-monserrat text-[18px]">
+                    <span>от </span>
+                    <span class="font-medium">{{item.price}} </span>
+                    <span> тг.</span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </template>
@@ -22,6 +25,7 @@ import axios from 'axios';
 const data = ref([]);
 const loading = ref(true);
 const error = ref(null);
+const emit = defineEmits(['create'])
 
 async function fetchData() {
     try {
@@ -35,8 +39,12 @@ async function fetchData() {
     }
 }
 
+const showPopup = () => {
+    emit('create')
+}
+
 provide('pizza', {
-    data
+    data,
 })
 
 onMounted(fetchData);
