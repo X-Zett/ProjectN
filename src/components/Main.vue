@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex justify-between mt-10 px-[70px]">
         <Filters></Filters>
-        <Popup v-if="PopupState" @create="hidePopup"></Popup>
+        <Popup v-if="PopupState" @create="hidePopup" :sel-item="selItem"></Popup>
         <Categories @create="showPopup"></Categories>
     </div>
 </template>
@@ -13,9 +13,12 @@ import Popup from "@/components/Popup.vue";
 import {ref} from "vue";
 
 const PopupState = ref(false)
+const selItem = ref({})
 
-const showPopup = () => {
+const showPopup = (item) => {
     PopupState.value = true
+    selItem.value = item
+    console.log(selItem.value)
 }
 
 const hidePopup = () => {

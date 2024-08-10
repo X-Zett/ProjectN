@@ -4,14 +4,17 @@
             <span>Пиццы</span>
         </div>
         <div class="flex flex-wrap justify-between gap-[40px]">
-            <div v-for="item in data" @click="showPopup" class="relative w-[230px] h-[375px] flex flex-col rounded-[10px] hover:text-[#ffdd55] transition cursor-pointer">
+            <div v-for="item in data" @click="showPopup(item)" class="relative w-[230px] h-[375px] flex flex-col rounded-[10px] hover:text-[#ffdd55] transition cursor-pointer">
                 <img class="w-[210px] h-[220px] object-contain ml-[15px] mr-[5px]" :src="item.image" alt="">
                 <span class="font-monserrat font-medium text-[22px] my-[5px] leading-normal">{{item.name}}</span>
                 <p class="font-monserrat font-light text-[14px] leading-normal">{{item.desc}}</p>
-                <div class="absolute bottom-0 font-monserrat text-[18px]">
-                    <span>от </span>
-                    <span class="font-medium">{{item.price}} </span>
-                    <span> тг.</span>
+                <div class="w-full absolute bottom-0 font-monserrat text-[18px] flex justify-between items-center">
+                    <div>
+                        <span>от </span>
+                        <span class="font-medium">{{item.price}} </span>
+                        <span> тг.</span>
+                    </div>
+                    <el-button color="#fff4ca" class="text-cyan-200" :icon="Plus" style="--el-button-text-color: #978128; --el-button-hover-text-color: #978128">Собрать</el-button>
                 </div>
             </div>
         </div>
@@ -21,6 +24,7 @@
 <script setup>
 import {ref, onMounted, provide} from 'vue';
 import axios from 'axios';
+import { Plus } from "@element-plus/icons-vue"
 
 const data = ref([]);
 const loading = ref(true);
@@ -39,8 +43,8 @@ async function fetchData() {
     }
 }
 
-const showPopup = () => {
-    emit('create')
+const showPopup = (item) => {
+    emit('create', item)
 }
 
 provide('pizza', {
