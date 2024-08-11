@@ -1,6 +1,6 @@
 <template>
     <div class="py-[20px] px-[70px] flex justify-between items-center shadow-md sticky top-0 bg-white z-10">
-        <span class="font-pangolin font-normal not-italic text-[40px]">Lemon</span>
+        <span class="font-pangolin font-normal not-italic text-[40px]">GoPizza</span>
         <form action="#" method="get" class="">
             <el-input class="w-[250px] h-[40px] box-border font-monserrat font-medium" placeholder="Введите название">
                 <template #append>
@@ -8,8 +8,12 @@
                 </template>
             </el-input>
         </form>
-        <a href=""><img class="w-[60px] h-[60px]" src="../../public/2003191_citrus_food_lemon_nutrition_icon.png" alt=""></a>
-
+        <div class="w-fit h-[60px] flex items-center">
+            <button class="bg-[#ffeeaa] w-[90px] py-1 rounded-[13px]">
+                Корзина
+            </button>
+            <a href=""><img class="w-[60px] h-[60px]" src="../../public/2003191_citrus_food_lemon_nutrition_icon.png" alt=""></a>
+        </div>
     </div>
 </template>
 
