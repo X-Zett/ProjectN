@@ -45,6 +45,9 @@
                     </el-radio>
                 </el-radio-group>
             </el-form-item>
+            <el-form-item class="w-[200px]">
+                <button class="bg-[#ffeeaa] w-full py-2 rounded-[10px] hover:bg-[#fff4ca]">Применить</button>
+            </el-form-item>
         </el-form>
     </div>
 </template>
@@ -72,5 +75,9 @@ input[type="number"]:hover,
 input[type="number"]:focus {
     appearance: none;
     -moz-appearance: textfield;
+}
+
+.el-input {
+    --el-input-border-radius: 10px;
 }
 </style>

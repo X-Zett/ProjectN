@@ -14,7 +14,7 @@
                         <span class="font-medium">{{item.price}} </span>
                         <span> тг.</span>
                     </div>
-                    <el-button color="#fff4ca" class="text-cyan-200" :icon="Plus" style="--el-button-text-color: #978128; --el-button-hover-text-color: #978128">Собрать</el-button>
+                    <el-button color="#fff4ca" :icon="Plus" style="--el-button-text-color: #978128; --el-button-hover-text-color: #978128">Собрать</el-button>
                 </div>
             </div>
         </div>
@@ -55,4 +55,7 @@ onMounted(fetchData);
 </script>
 
 <style scoped>
+.el-button {
+    --el-border-radius-base: 10px;
+}
 </style>

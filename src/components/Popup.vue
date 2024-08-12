@@ -81,9 +81,10 @@ const toggleSelection = (index) => {
 <style scoped>
     .el-segmented {
         --el-segmented-item-selected-bg-color: #ffeeaa;
-        --el-border-radius-base: 15px;
+        --el-border-radius-base: 10px;
         --el-segmented-bg-color: #eeeeee;
         --el-segmented-padding: 0px;
-        --el-segmented-item-selected-color: #606266;
+        --el-segmented-item-selected-color: #000000;
+
     }
 </style>
