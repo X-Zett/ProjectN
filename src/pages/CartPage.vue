@@ -1,6 +1,7 @@
 <template>
     <div>
         <Header></Header>
+        <Order></Order>
     </div>
 </template>
 
@@ -8,6 +9,7 @@
 
 import Main from "@/components/Main.vue";
 import Header from "@/components/Header.vue";
+import Order from "@/components/Order.vue";
 </script>
 
 <style lang="scss" scoped>

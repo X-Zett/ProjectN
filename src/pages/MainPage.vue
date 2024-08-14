@@ -2,7 +2,6 @@
     <div>
         <Header @create="openCart"></Header>
         <Main :show-cart="showCart" @update:show-cart="showCart = $event"></Main>
-        <Establishments></Establishments>
     </div>
 </template>
 
