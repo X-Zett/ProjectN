@@ -1,9 +1,9 @@
 <template>
     <div class="w-full flex justify-between mt-10 px-[70px]">
         <Filters></Filters>
-        <Popup v-if="PopupState" @create="hidePopup" :sel-item="selItem"></Popup>
+        <Popup v-if="PopupState" @create="hidePopup" :sel-item="selItem" @add-to-cart="addToCart"></Popup>
         <Categories @create="showPopup"></Categories>
-        <CartPopup v-if="showCart" @create="hideCart"></CartPopup>
+        <CartPopup v-if="showCart" @create="hideCart" :cart-items="cartItems"></CartPopup>
     </div>
 </template>
 
@@ -16,6 +16,7 @@ import CartPopup from "@/components/CartPopup.vue";
 
 const PopupState = ref(false)
 const selItem = ref({})
+const cartItems = ref([])
 
 defineProps({
     showCart: Boolean
@@ -34,6 +35,11 @@ const hidePopup = () => {
 
 const hideCart = () => {
     emit('update:showCart', false)
+}
+
+const addToCart = () => {
+    cartItems.value.push(selItem.value)
+    console.log('Корзина:', cartItems.value)
 }
 </script>
 

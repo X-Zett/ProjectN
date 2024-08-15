@@ -13,7 +13,7 @@
                 <span class="w-full text-[16px] mb-[10px]">Цена:</span>
                 <span class="w-[165px] flex justify-between">
                     <el-input type="number" v-model="pizza.priceMin" placeholder="От" style="width: 80px"></el-input>
-                    <el-input v-model="pizza.priceMax" placeholder="До" style="width: 80px"></el-input>
+                    <el-input type="number" v-model="pizza.priceMax" placeholder="До" style="width: 80px"></el-input>
                 </span>
                 <img class="w-4 h-4 ml-2 opacity-30" src="/public/tenge.png">
             </el-form-item>

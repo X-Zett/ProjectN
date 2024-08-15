@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="w-full flex justify-center mt-5">
-                    <button class="bg-[#ffeeaa] w-[320px] py-2 rounded-[13px]">
+                    <button @click="addToCart" class="bg-[#ffeeaa] w-[320px] py-2 rounded-[13px]">
                         Добавить в корзину
                     </button>
                 </div>
@@ -43,7 +43,7 @@ import {inject, ref} from "vue";
 
 // const temp = ref(false)
 // const Popup = inject('pizza')
-const emit = defineEmits(['create'])
+const emit = defineEmits(['create', 'addToCart'])
 const sizeValue = ref('Средняя')
 const sizeOptions = ['Маленькая', 'Средняя', 'Большая']
 const typeValue = ref('Традиционное')
@@ -74,6 +74,10 @@ const hidePopup = () => {
 const toggleSelection = (index) => {
     selectedItems.value[index] = !selectedItems.value[index]
     console.log(selectedItems.value[index])
+}
+
+const addToCart = () => {
+    emit('addToCart')
 }
 
 </script>
