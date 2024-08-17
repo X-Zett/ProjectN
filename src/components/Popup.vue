@@ -8,7 +8,7 @@
             </div>
             <div class="w-[380px] flex flex-col rounded-r-[20px] bg-[#fafafa] font-monserrat">
                 <span class="text-[22px] mt-8 pl-[30px]">{{ selItem.name }}</span>
-                <p class="text-[14px] mt-1 pl-[30px]">25см, традиционное тесто</p>
+                <p class="text-[14px] mt-1 pl-[30px]">{{pizzaDesc}}</p>
                 <div class="w-full flex items-center flex-col mt-5 gap-3">
                     <el-segmented class="w-[320px]" v-model="sizeValue" :options="sizeOptions"></el-segmented>
                     <el-segmented class="w-[320px]" v-model="typeValue" :options="typeOptions"></el-segmented>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="w-full flex justify-center mt-5">
                     <button @click="addToCart" class="bg-[#ffeeaa] w-[320px] py-2 rounded-[13px]">
-                        Добавить в корзину
+                        Добавить в корзину за {{totalPrice}} тг.
                     </button>
                 </div>
             </div>
@@ -36,10 +36,10 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
     selItem: Object
 })
-import {inject, ref} from "vue";
+import {computed, inject, ref} from "vue";
 
 // const temp = ref(false)
 // const Popup = inject('pizza')
@@ -67,17 +67,42 @@ const ingredients = ref([
 ])
 const selectedItems = ref(Array(ingredients.value.length).fill(false))
 
+const totalPrice = computed(() => {
+    let price = props.selItem.price;
+    for (const [index, isSelected] of Object.entries(selectedItems.value)) {
+        if (isSelected) {
+            price += ingredients.value[index].price;
+        }
+    }
+
+    return price;
+});
+
+const pizzaDesc = computed(() => {
+    const sizeText = sizeValue.value === 'Маленькая' ? '25см'
+        : sizeValue.value === 'Средняя' ? '30см'
+            : '35см';
+    const crustText = typeValue.value === 'Традиционное' ? 'традиционное тесто' : 'тонкое тесто';
+
+    return `${sizeText}, ${crustText}`;
+});
+
 const hidePopup = () => {
     emit('create')
 }
 
 const toggleSelection = (index) => {
     selectedItems.value[index] = !selectedItems.value[index]
-    console.log(selectedItems.value[index])
+    console.log(selectedItems.value)
 }
 
 const addToCart = () => {
-    emit('addToCart')
+    const pizzaData = {
+        description: pizzaDesc.value,
+        ingredients: selectedItems.value,
+        price: totalPrice.value
+    }
+    emit('addToCart', pizzaData)
 }
 
 </script>

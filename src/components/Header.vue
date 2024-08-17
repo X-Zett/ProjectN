@@ -1,5 +1,5 @@
 <template>
-    <div class="py-[20px] px-[70px] flex justify-between items-center shadow-md sticky top-0 bg-white z-10">
+    <div class="py-[20px] px-[70px] flex justify-between items-center border-b-2 sticky top-0 bg-white z-10">
         <a href="/"><span class="font-pangolin font-normal not-italic text-[40px]">GoPizza</span></a>
         <form action="#" method="get" class="w-[400px]">
             <el-input class="h-[40px] box-border font-monserrat font-medium" placeholder="Введите название">
