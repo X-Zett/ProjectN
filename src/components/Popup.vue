@@ -102,6 +102,7 @@ const addToCart = () => {
         ingredients: selectedItems.value,
         price: totalPrice.value
     }
+    hidePopup()
     emit('addToCart', pizzaData)
 }
 

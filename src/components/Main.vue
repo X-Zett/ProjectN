@@ -24,7 +24,7 @@ defineProps({
     showCart: Boolean
 })
 
-const emit = defineEmits(['update:showCart'])
+const emit = defineEmits(['update:showCart', 'cartData'])
 
 const showPopup = (item) => {
     PopupState.value = true
@@ -42,6 +42,7 @@ const hideCart = () => {
 const addToCart = (first) => {
     cartItems.value.push(selItem.value)
     pizzaData.value.push(first)
+    emit('cartData', cartItems.value, pizzaData.value)
     console.log('Корзина:', cartItems.value, pizzaData.value)
 }
 </script>
