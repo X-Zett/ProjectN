@@ -2,7 +2,8 @@
     <div class="fixed w-full h-full top-0 left-0 flex justify-center items-center z-20">
         <div @click="hidePopup" class="fixed w-full h-full bg-black opacity-50">
         </div>
-        <div class="w-[820px] h-[500px] rounded-[20px] z-20 bg-white flex justify-between">
+        <div class="w-[820px] h-[500px] rounded-[20px] z-20 bg-white
+        flex justify-between animate__animated animate__fadeIn animate__faster">
             <div class="w-[440px] h-full flex justify-center items-center">
                 <img class="w-[280px] h-[280px] ml-2.5" :src="selItem.image" alt="">
             </div>

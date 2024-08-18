@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="w-full h-full">
         <Header ></Header>
-        <Order></Order>
+        <Order :cart-items="cartItems" :pizza-data="pizzaData" :total-price="totalPrice"></Order>
     </div>
 </template>
 

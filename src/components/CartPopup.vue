@@ -1,9 +1,10 @@
 <template>
-    <div v-auto-animate class="fixed w-full h-full top-0 left-0 flex justify-end items-center z-20">
+    <div class="fixed w-full h-full top-0 left-0 flex justify-end
+    items-center z-20">
         <div @click="hideCart" class="fixed w-full h-full bg-black opacity-50">
         </div>
         <div v-if="cartItems.length" class="w-[400px] h-full z-20 bg-white
-        flex flex-col font-monserrat pt-8 justify-between">
+        flex flex-col font-monserrat pt-8 justify-between animate__animated animate__fadeInRight animate__faster">
             <span class="text-[22px] font-medium px-5">В корзине {{cartItems.length}} товара</span>
             <div class="flex flex-col w-full flex-grow">
                 <el-scrollbar max-height="540px" class="mt-8">
@@ -56,7 +57,8 @@
                 </button>
             </div>
         </div>
-        <div v-else class="w-[400px] h-full z-20 bg-white flex justify-center flex-col items-center font-monserrat">
+        <div v-else class="w-[400px] h-full z-20 bg-white flex justify-center flex-col
+        items-center font-monserrat animate__animated animate__fadeInRight animate__faster">
             <span class="text-[22px] font-medium">Корзина пустая</span>
             <span class="text-[14px] w-[300px] text-center mt-1">
                 Добавьте хотя бы одну пиццу, чтобы совершить заказ</span>
@@ -124,4 +126,5 @@ const incQuantity = (index) => {
 .el-divider {
     margin: 10px 0 10px 0;
 }
+
 </style>

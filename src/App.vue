@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full">
         <router-view></router-view>
     </div>
 </template>
@@ -9,8 +9,9 @@
 </script>
 
 <style>
-body {
+html, body {
     margin: 0;
+    height: 100%;
 }
 
 </style>
