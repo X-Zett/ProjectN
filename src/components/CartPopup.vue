@@ -6,7 +6,7 @@
         flex flex-col font-monserrat pt-8 justify-between">
             <span class="text-[22px] font-medium px-5">В корзине {{cartItems.length}} товара</span>
             <div class="flex flex-col w-full flex-grow">
-                <el-scrollbar max-height="580px" class="mt-8">
+                <el-scrollbar max-height="540px" class="mt-8">
                     <div v-for="(item, index) in cartItems" :key="index" class="flex w-full px-5 mb-8 bg-white gap-x-[10px]">
                         <div class="flex justify-center items-center w-[100px]">
                             <img :src="item.image" alt="">
@@ -17,14 +17,14 @@
                             <el-divider></el-divider>
                             <div class="flex justify-between">
                                 <div class="flex gap-x-3 items-center">
-                                    <button class="w-[35px] h-[35px] bg-[#ffffff]
+                                    <button @click="decQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
                             border-2 border-[#ffdd55] rounded-[10px]
                             flex justify-center items-center text-[22px] font-medium
                             text-[#ffdd55] hover:text-white hover:bg-[#ffdd55]">
                                         −
                                     </button>
-                                    <span>{{quantity[item.id]}}</span>
-                                    <button class="w-[35px] h-[35px] bg-[#ffffff]
+                                    <span>{{pizzaData[index].quantity}}</span>
+                                    <button @click="incQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
                             border-2 border-[#ffdd55] rounded-[10px]
                             flex justify-center items-center text-[22px] font-medium
                             text-[#ffdd55] hover:text-white hover:bg-[#ffdd55]">
@@ -39,8 +39,13 @@
                     </div>
                 </el-scrollbar>
             </div>
-            <div class="flex justify-center pb-8">
-                <button class="bg-[#ffeeaa] w-[320px]
+            <div class="flex pb-8 flex-col px-5">
+                <div class="my-5 flex w-full items-end text-[18px]">
+                    <span class="w-auto">Итого: </span>
+                    <el-divider class="flex-grow" border-style="dashed" style="margin: 0 5px 5px 5px;"></el-divider>
+                    <span class="text-end flex-shrink-0">{{totalPrice}} тг.</span>
+                </div>
+                <button class="bg-[#ffeeaa] w-full
             py-3 rounded-[13px] flex justify-center items-center
             gap-3" @click="goToOrder">
                     Оформить заказ
@@ -69,15 +74,16 @@
 </template>
 
 <script setup>
-import {ref, watchEffect, computed} from "vue";
+import {ref, watchEffect, computed, watch} from "vue";
 import router from "@/router/router.js";
 
 const props = defineProps({
     cartItems: Array,
-    pizzaData: {},
+    pizzaData: Array,
+    totalPrice: {}
 })
-const emit = defineEmits(['create'])
-const quantity = ref({})
+const emit = defineEmits(['create', 'update:pizzaData'])
+
 const hideCart = () => {
     emit('create')
 }
@@ -87,13 +93,25 @@ const goToOrder = () => {
     router.push({ path: '/order', query: { cart: cartData } });
 }
 
-watchEffect(() => {
-    props.cartItems.forEach(item => {
-        if (!quantity.value[item.id]) {
-            quantity.value[item.id] = 1
-        }
-    })
-})
+const decQuantity = (index) => {
+    if (props.pizzaData[index].quantity > 1) {
+        props.pizzaData[index].quantity -= 1
+        emit('update:pizzaData', props.pizzaData)
+    }
+    else if (props.pizzaData[index].quantity === 1) {
+        props.cartItems.splice(index, 1)
+        props.pizzaData.splice(index, 1)
+    }
+}
+
+const incQuantity = (index) => {
+    if (props.pizzaData[index].quantity < 20) {
+        props.pizzaData[index].quantity += 1
+        emit('update:pizzaData', props.pizzaData)
+    }
+}
+
+
 </script>
 
 <style scoped>

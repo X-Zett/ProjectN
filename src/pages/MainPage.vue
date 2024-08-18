@@ -2,7 +2,8 @@
     <div>
         <Header @create="openCart" :cart-items="cartItems"
                 :pizza-data="pizzaData" :total-price="totalPrice"></Header>
-        <Main :show-cart="showCart" @update:show-cart="showCart = $event" @cart-data="addToCart"></Main>
+        <Main :show-cart="showCart" @update:show-cart="showCart = $event"
+              @cart-data="addToCart" @update:total-price="totalPrice = $event"></Main>
     </div>
 </template>
 
@@ -21,13 +22,10 @@ const openCart = () => {
     showCart.value = true
 }
 
-const addToCart = (first, second) => {
+const addToCart = (first, second, third) => {
     cartItems.value = first
     pizzaData.value = second
-    totalPrice.value = 0
-    for (const item of second) {
-        totalPrice.value += item.price
-    }
+    totalPrice.value = third
     console.log('В хедер', cartItems.value, pizzaData.value, totalPrice)
 }
 </script>

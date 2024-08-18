@@ -100,7 +100,8 @@ const addToCart = () => {
     const pizzaData = {
         description: pizzaDesc.value,
         ingredients: selectedItems.value,
-        price: totalPrice.value
+        price: totalPrice.value,
+        quantity: 1
     }
     hidePopup()
     emit('addToCart', pizzaData)
@@ -115,6 +116,5 @@ const addToCart = () => {
         --el-segmented-bg-color: #eeeeee;
         --el-segmented-padding: 0px;
         --el-segmented-item-selected-color: #000000;
-
     }
 </style>
