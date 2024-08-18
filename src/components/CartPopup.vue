@@ -76,7 +76,9 @@
 <script setup>
 import {ref, watchEffect, computed, watch} from "vue";
 import router from "@/router/router.js";
+import {useStore} from 'vuex';
 
+const store = useStore()
 const props = defineProps({
     cartItems: Array,
     pizzaData: Array,
@@ -89,8 +91,12 @@ const hideCart = () => {
 }
 
 const goToOrder = () => {
-    const cartData = JSON.stringify(props.cartItems);
-    router.push({ path: '/order', query: { cart: cartData } });
+    store.commit('setCartItems', {
+        items:props.cartItems,
+        data:props.pizzaData,
+        price:props.totalPrice
+    })
+    router.push('/order');
 }
 
 const decQuantity = (index) => {

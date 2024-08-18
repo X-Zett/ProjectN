@@ -7,11 +7,31 @@ import 'element-plus/dist/index.css'
 import {autoAnimatePlugin} from "@formkit/auto-animate/vue";
 import App from './App.vue'
 import router from "@/router/router.js";
+import { createStore } from 'vuex';
+
+export const store = createStore({
+    state() {
+        return {
+            cartItems: [],
+            pizzaData: [],
+            totalPrice: 0
+        };
+    },
+    mutations: {
+        setCartItems(state, payload) {
+            const {items, data, price} = payload
+            state.cartItems = items
+            state.pizzaData = data
+            state.totalPrice = price
+        },
+    },
+});
 
 const app = createApp(App)
 app.use(autoAnimatePlugin)
 app.use(ElementPlus)
 app.use(router)
+app.use(store)
 app.mount('#app')
 
 // createApp(App).mount('#app')
