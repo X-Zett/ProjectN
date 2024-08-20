@@ -14,7 +14,6 @@ import Main from "@/components/Main.vue";
 import {ref} from "vue";
 
 const cartItems = ref([])
-const pizzaData = ref([])
 const totalPrice = ref(0)
 
 const showCart = ref(false)
@@ -22,11 +21,9 @@ const openCart = () => {
     showCart.value = true
 }
 
-const addToCart = (first, second, third) => {
-    cartItems.value = first
-    pizzaData.value = second
-    totalPrice.value = third
-    console.log('В хедер', cartItems.value, pizzaData.value, totalPrice)
+const addToCart = (toCartItems, newTotalPrice) => {
+    cartItems.value = toCartItems
+    totalPrice.value = newTotalPrice
 }
 </script>
 

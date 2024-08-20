@@ -14,7 +14,7 @@
                         </div>
                         <div class="flex flex-col flex-grow">
                             <span class="font-medium text-[18px]">{{item.name}}</span>
-                            <span>{{pizzaData[index].description}}</span>
+                            <span>{{item.description}}</span>
                             <el-divider></el-divider>
                             <div class="flex justify-between items-center">
                                 <div class="flex gap-x-3 items-center">
@@ -25,7 +25,7 @@
                             text-[#ffdd55] hover:text-white hover:bg-[#ffdd55]">
                                             −
                                         </button>
-                                        <span class="w-[20px] text-center">{{pizzaData[index].quantity}}</span>
+                                        <span class="w-[20px] text-center">{{item.quantity}}</span>
                                         <button @click="incQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
                             border-2 border-[#ffdd55] rounded-[10px]
                             flex justify-center items-center text-[22px] font-medium
@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="text-[18px] font-medium">{{pizzaData[index].price}} тг.</span>
+                                    <span class="text-[18px] font-medium">{{item.price}} тг.</span>
                                 </div>
                             </div>
                         </div>
@@ -90,10 +90,9 @@ import {useStore} from 'vuex';
 const store = useStore()
 const props = defineProps({
     cartItems: Array,
-    pizzaData: Array,
     totalPrice: {}
 })
-const emit = defineEmits(['create', 'update:pizzaData'])
+const emit = defineEmits(['create', 'update:cartItems'])
 
 const hideCart = () => {
     emit('create')
@@ -102,33 +101,30 @@ const hideCart = () => {
 const goToOrder = () => {
     store.commit('setCartItems', {
         items:props.cartItems,
-        data:props.pizzaData,
         price:props.totalPrice
     })
     router.push('/order');
 }
 
 const decQuantity = (index) => {
-    if (props.pizzaData[index].quantity > 1) {
-        props.pizzaData[index].quantity -= 1
-        emit('update:pizzaData', props.pizzaData)
+    if (props.cartItems[index].quantity > 1) {
+        props.cartItems[index].quantity -= 1
+        emit('update:cartItems', props.cartItems)
     }
-    else if (props.pizzaData[index].quantity === 1) {
+    else if (props.cartItems[index].quantity === 1) {
         props.cartItems.splice(index, 1)
-        props.pizzaData.splice(index, 1)
     }
 }
 
 const incQuantity = (index) => {
-    if (props.pizzaData[index].quantity < 20) {
-        props.pizzaData[index].quantity += 1
-        emit('update:pizzaData', props.pizzaData)
+    if (props.cartItems[index].quantity < 20) {
+        props.cartItems[index].quantity += 1
+        emit('update:cartItems', props.cartItems)
     }
 }
 
 const deleteItem = (index) => {
     props.cartItems.splice(index, 1)
-    props.pizzaData.splice(index, 1)
 }
 
 </script>

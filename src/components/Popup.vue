@@ -99,10 +99,12 @@ const toggleSelection = (index) => {
 
 const addToCart = () => {
     const pizzaData = {
+        name: props.selItem.name,
         description: pizzaDesc.value,
         ingredients: selectedItems.value,
         price: totalPrice.value,
-        quantity: 1
+        quantity: 1,
+        image: props.selItem.image
     }
     hidePopup()
     emit('addToCart', pizzaData)

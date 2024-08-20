@@ -14,15 +14,13 @@ export const store = createStore({
     state() {
         return {
             cartItems: [],
-            pizzaData: [],
             totalPrice: 0
         };
     },
     mutations: {
         setCartItems(state, payload) {
-            const {items, data, price} = payload
+            const {items, price} = payload
             state.cartItems = items
-            state.pizzaData = data
             state.totalPrice = price
         },
     },

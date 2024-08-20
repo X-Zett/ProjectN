@@ -1,11 +1,10 @@
 <template>
     <div class="w-full flex justify-between mt-10 px-[70px]">
-        <Filters @reset-filter="resetFilter" :filters="filters"></Filters>
+        <Filters @reset-filter="resetFilter" :filters="filters" @update-filter="updateFilter"></Filters>
         <Popup v-if="PopupState" @create="hidePopup" :sel-item="selItem" @add-to-cart="addToCart"></Popup>
         <Categories @create="showPopup" :pizzas="filteredPizzas" @current-page="goToPage"></Categories>
         <CartPopup v-if="showCart" @create="hideCart" :cart-items="cartItems"
-                   :pizza-data="pizzaData" :total-price="totalPrice"
-                   @update:pizza-data="pizzaData = $event"></CartPopup>
+                   :total-price="totalPrice" @update:cart-items="cartItems = $event"></CartPopup>
     </div>
 </template>
 
@@ -45,7 +44,6 @@ async function fetchData() {
 const PopupState = ref(false)
 const selItem = ref({})
 const cartItems = ref([])
-const pizzaData = ref([])
 const totalPrice = ref(0)
 // const filteredPizzas = ref([]);
 
@@ -72,15 +70,15 @@ const hideCart = () => {
     emit('update:showCart', false)
 }
 
-const addToCart = (first) => {
-    cartItems.value.push(selItem.value)
-    pizzaData.value.push(first)
-    emit('cartData', cartItems.value, pizzaData.value, totalPrice.value)
-    console.log('Корзина:', cartItems.value, pizzaData.value, totalPrice.value)
+const addToCart = (PizzaData) => {
+    // cartItems.value.push(selItem.value)
+    cartItems.value.push(PizzaData)
+    emit('cartData', cartItems.value, totalPrice.value)
+    console.log('Корзина:', cartItems.value, totalPrice.value)
 }
 
 const calculateTotalPrice = () => {
-    totalPrice.value = pizzaData.value.reduce((sum, pizza) => {
+    totalPrice.value = cartItems.value.reduce((sum, pizza) => {
         return sum + (pizza.price * pizza.quantity)
     }, 0);
     emit('update:totalPrice', totalPrice.value)
@@ -99,6 +97,10 @@ const resetFilter = (newFilter) => {
     filters.value = newFilter
 };
 
+const updateFilter = ({ key, value }) => {
+    filters.value[key] = value;
+};
+
 const filteredPizzas = computed(() => {
     return data.value.filter(pizza => {
         const matchPrice = pizza.price >= filters.value.priceMin && pizza.price <= filters.value.priceMax;
@@ -110,7 +112,7 @@ const filteredPizzas = computed(() => {
 });
 
 watch(
-    () => pizzaData,
+    () => cartItems,
     () => {
         calculateTotalPrice()
     },

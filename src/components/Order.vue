@@ -18,11 +18,11 @@
                             <div class="flex flex-grow text-[16px] items-center">
                                 <div class="flex flex-col justify-center h-full w-[50%]">
                                     <span class="font-medium">{{item.name}}</span>
-                                    <span class="font-normal text-[14px]">{{pizzaData[index].description}}</span>
+                                    <span class="font-normal text-[14px]">{{item.description}}</span>
                                     <span class=""></span>
                                 </div>
                                 <div>
-                                    <span class="">{{pizzaData[index].price}} тг.</span>
+                                    <span class="">{{item.price}} тг.</span>
                                 </div>
                                 <div class="flex gap-x-3 items-center flex-grow h-full justify-end">
                                     <button @click="decQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
@@ -31,7 +31,7 @@
                             text-[#ffdd55] hover:text-white hover:bg-[#ffdd55]">
                                         −
                                     </button>
-                                    <span class="w-[20px] text-center">{{pizzaData[index].quantity}}</span>
+                                    <span class="w-[20px] text-center">{{item.quantity}}</span>
                                     <button @click="incQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
                             border-2 border-[#ffdd55] rounded-[10px]
                             flex justify-center items-center text-[22px] font-medium
@@ -132,7 +132,6 @@ import router from "@/router/router.js";
 
 const props = defineProps({
     cartItems: Array,
-    pizzaData: Array,
     totalPrice: {}
 })
 
@@ -141,27 +140,25 @@ const totalPrice = ref(props.totalPrice)
 
 const deleteItem = (index) => {
     props.cartItems.splice(index, 1)
-    props.pizzaData.splice(index, 1)
 }
 
 const decQuantity = (index) => {
-    if (props.pizzaData[index].quantity > 1) {
-        props.pizzaData[index].quantity -= 1
+    if (props.cartItems[index].quantity > 1) {
+        props.cartItems[index].quantity -= 1
     }
-    else if (props.pizzaData[index].quantity === 1) {
+    else if (props.cartItems[index].quantity === 1) {
         props.cartItems.splice(index, 1)
-        props.pizzaData.splice(index, 1)
     }
 }
 
 const incQuantity = (index) => {
-    if (props.pizzaData[index].quantity < 20) {
-        props.pizzaData[index].quantity += 1
+    if (props.cartItems[index].quantity < 20) {
+        props.cartItems[index].quantity += 1
     }
 }
 
 const calculateTotalPrice = () => {
-    totalPrice.value = props.pizzaData.reduce((sum, pizza) => {
+    totalPrice.value = props.cartItems.reduce((sum, pizza) => {
         return sum + (pizza.price * pizza.quantity)
     }, 0);
 };
@@ -171,7 +168,7 @@ const goToMain = () => {
 }
 
 watch(
-    () => props.pizzaData,
+    () => props.cartItems,
     () => {
         calculateTotalPrice()
     },
