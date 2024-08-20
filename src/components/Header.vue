@@ -1,6 +1,8 @@
 <template>
-    <div class="py-[20px] px-[70px] flex justify-between items-center border-b-2 sticky top-0 bg-white z-10">
-        <a href="/"><span class="font-pangolin font-normal not-italic text-[40px]">GoPizza</span></a>
+    <div class="py-[10px] px-[70px] flex justify-between items-center border-b-2 sticky top-0 bg-white z-10">
+        <a href="/">
+            <img class="w-[70px]" src="/public/pizzaicon3.webp" alt="">
+        </a>
         <div v-if="!isOrderPage" class="w-fit h-[60px] flex items-center">
             <button v-if="cartItems.length" class="w-auto h-[40px] bg-[#ffdd55]
             border-2 border-[#ffdd55] py-1 rounded-[12px] px-2
