@@ -3,7 +3,7 @@
         <div class="font-monserrat font-semibold not-italic text-[24px] mb-[20px]">
             <span>Фильтрация</span>
         </div>
-        <el-form label-width="auto" class="font-monserrat" @submit.prevent="applyFilter">
+        <el-form label-width="auto" class="font-monserrat" @submit.prevent="resetFilter">
             <el-form-item style="margin-bottom: 10px">
                 <el-checkbox style="margin-bottom: 0" v-model="filters.new">
                     <span class="text-[16px]">Новинки</span>
@@ -35,7 +35,7 @@
                 </el-checkbox-group>
             </el-form-item>
             <el-form-item class="w-[200px]">
-                <button type="submit" class="bg-[#ffeeaa] w-full py-2 rounded-[10px] hover:bg-[#fff4ca]">Применить</button>
+                <button type="submit" class="bg-[#ffeeaa] w-full py-2 rounded-[10px] hover:bg-[#fff4ca]">Сбросить</button>
             </el-form-item>
         </el-form>
     </div>
@@ -44,23 +44,19 @@
 <script setup>
 import {ref} from "vue"
 
-const emit = defineEmits(['apply-filter'])
-const pizza = ref({
-    priceMin: null,
-    priceMax: null,
-    ingredients: [],
-    type: []
-})
+const emit = defineEmits(['reset-filter'])
 
-const filters = ref({
-    priceMin: 0,
-    priceMax: Infinity,
-    ingredients: [],
-    new: false
+const props = defineProps({
+    filters: Object
 })
-
-const applyFilter = () => {
-    emit('apply-filter', filters.value);
+const resetFilter = () => {
+    const defaultFilters = {
+        priceMin: 0,
+        priceMax: Infinity,
+        ingredients: [],
+        new: false
+    };
+    emit('reset-filter', defaultFilters);
 };
 </script>
 

@@ -2,7 +2,7 @@
     <div>
         <Header @create="openCart" :cart-items="cartItems"
                 :pizza-data="pizzaData" :total-price="totalPrice"></Header>
-        <Main :show-cart="showCart" @update:show-cart="showCart = $event"
+        <Main :show-cart="showCart" @update:show-cart="(val) => showCart = val"
               @cart-data="addToCart" @update:total-price="totalPrice = $event"></Main>
     </div>
 </template>

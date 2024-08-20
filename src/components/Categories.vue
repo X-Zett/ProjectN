@@ -18,24 +18,37 @@
                 </div>
             </div>
         </div>
+<!--        <el-pagination-->
+<!--            v-model:current-page="currentPage"-->
+<!--            :page-size="4"-->
+<!--            :disabled="false"-->
+<!--            :background="false"-->
+<!--            layout="prev, pager, next"-->
+<!--            :total="8"-->
+<!--            @current-change="goToPage"-->
+<!--        />-->
     </div>
 </template>
 
 <script setup>
-import {ref, onMounted, provide} from 'vue';
+import {ref, onMounted, provide, watch} from 'vue';
 import axios from 'axios';
 import { Plus } from "@element-plus/icons-vue"
 
-const emit = defineEmits(['create'])
+const emit = defineEmits(['create', 'currentPage'])
 
 const props = defineProps({
-    pizzas: Array
+    pizzas: Array,
 })
+// const currentPage = ref(1)
 
 const showPopup = (item) => {
     emit('create', item)
 }
 
+// const goToPage = (val) => {
+//     emit('currentPage', val)
+// }
 </script>
 
 <style scoped>
