@@ -1,10 +1,10 @@
 <template>
-    <div class="w-[1080px]">
+    <div class="w-[1080px] pb-10">
         <div class="font-monserrat font-semibold not-italic text-[24px] mb-[20px]">
             <span>Пиццы</span>
         </div>
-        <div class="flex flex-wrap justify-between gap-[40px]">
-            <div v-for="item in data" @click="showPopup(item)" class="relative w-[230px] h-[375px] flex flex-col rounded-[10px] hover:text-[#ffdd55] transition cursor-pointer">
+        <div class="flex flex-wrap gap-[40px]">
+            <div v-for="item in pizzas" @click="showPopup(item)" class="relative w-[calc(25%_-_30px)] h-[375px] flex flex-col rounded-[10px] hover:text-[#ffdd55] transition cursor-pointer">
                 <img class="w-[210px] h-[220px] object-contain ml-[15px] mr-[5px]" :src="item.image" alt="">
                 <span class="font-monserrat font-medium text-[22px] my-[5px] leading-normal">{{item.name}}</span>
                 <p class="font-monserrat font-light text-[14px] leading-normal">{{item.desc}}</p>
@@ -26,32 +26,16 @@ import {ref, onMounted, provide} from 'vue';
 import axios from 'axios';
 import { Plus } from "@element-plus/icons-vue"
 
-const data = ref([]);
-const loading = ref(true);
-const error = ref(null);
 const emit = defineEmits(['create'])
 
-async function fetchData() {
-    try {
-        loading.value = true;
-        const response = await axios.get('https://6c2cf1ca9269fb85.mokky.dev/items');
-        data.value = response.data;
-    } catch (err) {
-        error.value = err.message;
-    } finally {
-        loading.value = false;
-    }
-}
+const props = defineProps({
+    pizzas: Array
+})
 
 const showPopup = (item) => {
     emit('create', item)
 }
 
-provide('pizza', {
-    data,
-})
-
-onMounted(fetchData);
 </script>
 
 <style scoped>

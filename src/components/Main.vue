@@ -1,8 +1,8 @@
 <template>
     <div class="w-full flex justify-between mt-10 px-[70px]">
-        <Filters></Filters>
+        <Filters @apply-filter="applyFilter"></Filters>
         <Popup v-if="PopupState" @create="hidePopup" :sel-item="selItem" @add-to-cart="addToCart"></Popup>
-        <Categories @create="showPopup"></Categories>
+        <Categories @create="showPopup" :pizzas="filteredPizzas"></Categories>
         <CartPopup v-if="showCart" @create="hideCart" :cart-items="cartItems"
                    :pizza-data="pizzaData" :total-price="totalPrice"
                    @update:pizza-data="pizzaData = $event"></CartPopup>
@@ -13,14 +13,34 @@
 import Filters from "./../components/Filters.vue";
 import Categories from "./../components/Categories.vue";
 import Popup from "@/components/Popup.vue";
-import {inject, ref, watch} from "vue";
+import {inject, onMounted, ref, watch} from "vue";
 import CartPopup from "@/components/CartPopup.vue";
+import axios from "axios";
+
+const data = ref([]);
+const loading = ref(true);
+const error = ref(null);
+
+async function fetchData() {
+    try {
+        loading.value = true;
+        const response = await axios.get('https://6c2cf1ca9269fb85.mokky.dev/items');
+        data.value = response.data;
+        filteredPizzas.value = data.value;
+        console.log(data.value)
+    } catch (err) {
+        error.value = err.message;
+    } finally {
+        loading.value = false;
+    }
+}
 
 const PopupState = ref(false)
 const selItem = ref({})
 const cartItems = ref([])
 const pizzaData = ref([])
 const totalPrice = ref(0)
+const filteredPizzas = ref([]);
 
 defineProps({
     showCart: Boolean
@@ -55,6 +75,15 @@ const calculateTotalPrice = () => {
     emit('update:totalPrice', totalPrice.value)
 };
 
+const applyFilter = (filters) => {
+    filteredPizzas.value = data.value.filter(pizza => {
+        const matchPrice = pizza.price >= filters.priceMin && pizza.price <= filters.priceMax;
+        const matchIngredients = filters.ingredients.every(ingredient => pizza.ingredients.includes(ingredient));
+        const matchNew = filters.new ? pizza.new : true;
+
+        return matchPrice && matchIngredients && matchNew;
+    });
+}
 watch(
     () => pizzaData,
     () => {
@@ -62,6 +91,7 @@ watch(
     },
     {deep: true}
 )
+onMounted(fetchData);
 </script>
 
 <style scoped>

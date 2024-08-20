@@ -7,7 +7,7 @@
         flex flex-col font-monserrat pt-8 justify-between animate__animated animate__fadeInRight animate__faster">
             <span class="text-[22px] font-medium px-5">В корзине {{cartItems.length}} товара</span>
             <div class="flex flex-col w-full flex-grow">
-                <el-scrollbar max-height="540px" class="mt-8">
+                <el-scrollbar max-height="540px" class="mt-8" >
                     <div v-for="(item, index) in cartItems" :key="index" class="flex w-full px-5 mb-8 bg-white gap-x-[10px]">
                         <div class="flex justify-center items-center w-[100px]">
                             <img :src="item.image" alt="">
@@ -16,21 +16,28 @@
                             <span class="font-medium text-[18px]">{{item.name}}</span>
                             <span>{{pizzaData[index].description}}</span>
                             <el-divider></el-divider>
-                            <div class="flex justify-between">
+                            <div class="flex justify-between items-center">
                                 <div class="flex gap-x-3 items-center">
-                                    <button @click="decQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
+                                    <div class="gap-x-1 flex items-center">
+                                        <button @click="decQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
                             border-2 border-[#ffdd55] rounded-[10px]
                             flex justify-center items-center text-[22px] font-medium
                             text-[#ffdd55] hover:text-white hover:bg-[#ffdd55]">
-                                        −
-                                    </button>
-                                    <span>{{pizzaData[index].quantity}}</span>
-                                    <button @click="incQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
+                                            −
+                                        </button>
+                                        <span class="w-[20px] text-center">{{pizzaData[index].quantity}}</span>
+                                        <button @click="incQuantity(index)" class="w-[35px] h-[35px] bg-[#ffffff]
                             border-2 border-[#ffdd55] rounded-[10px]
                             flex justify-center items-center text-[22px] font-medium
                             text-[#ffdd55] hover:text-white hover:bg-[#ffdd55]">
-                                        +
-                                    </button>
+                                            +
+                                        </button>
+                                    </div>
+                                    <div @click="deleteItem(index)" class="w-[30px] h-[30px] flex justify-center items-center cursor-pointer">
+                                        <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L11 11M1 11L11 1" stroke="#C0C0C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div>
                                     <span class="text-[18px] font-medium">{{pizzaData[index].price}} тг.</span>
@@ -119,6 +126,10 @@ const incQuantity = (index) => {
     }
 }
 
+const deleteItem = (index) => {
+    props.cartItems.splice(index, 1)
+    props.pizzaData.splice(index, 1)
+}
 
 </script>
 
